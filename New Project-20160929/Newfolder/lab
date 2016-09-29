@@ -1,0 +1,98 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+
+void calcdata(int [], float [] , char [], string []);
+
+int main ()
+{
+	
+int grade [5]= { 0 }; 
+float avg [4] = { 0 }; //# of tests
+char calif[5]={0};
+int sum=0;
+	
+string name[5];
+
+
+for (int j=0; j<5; j++){
+	cout<<"Entre el nombre del estudiante " <<j+1 <<": " <<"\n";
+	cin >> name[j];
+	cout<<"Entre las Notas del estudiante: " <<j+1 <<"\n";
+	
+	for (int i=0;i<4; i++){
+	cout<<"La nota " << i+1 << "es : " << "\n";
+	cin >>grade[i] ;
+	
+	sum=sum + grade[i];
+
+avg[j]=sum/4;
+
+	}
+			
+	sum=0;
+}
+	
+	calcdata(grade,avg,calif,name);
+	
+
+
+return 0;
+}
+
+
+
+
+void calcdata(int grade[], float avg[], char calif[], string name[]){
+for (int j=0;j<5; j++) {
+	if(avg[j]<=100 && avg[j]>=90)
+	calif[j]='A';
+	else
+		if(avg[j]<=89 && avg[j]>=80)
+		calif[j]='B';
+		else
+			if(avg[j]<=79 && avg[j]>=70)
+			calif[j]='C';
+			else
+				if(avg[j]<=69 && avg[j]>=60)
+				calif[j]='D';
+				else
+				calif[j]='F';}
+
+for(int j=0;j<5;j++){
+cout << "Name: " << name[j]
+      <<" Average: " << avg[j]
+       <<" Grade: " << calif[j]
+       << endl;}
+
+// Step through each element of the array
+for (int startIndex = 0; startIndex < 5; ++startIndex)
+{
+// smallestIndex is the index of the smallest element we've encountered so far.
+int smallestIndex = startIndex;
+
+// Look for smallest element remaining in the array (starting at startIndex+1)
+for (int currentIndex = startIndex + 1; currentIndex < 5; ++currentIndex)
+{
+// If the current element is smaller than our previously found smallest
+if (name[currentIndex] < name[smallestIndex])
+
+smallestIndex = currentIndex;
+}
+
+// Swap our start element with our smallest element
+std::swap(name[startIndex], name[smallestIndex]);
+
+}
+
+// Now print our sorted array as proof it works
+ cout<<"Students in alphabetical order\n";
+for (int index = 0; index < 5; ++index){
+ cout << setw( 6 ) << name[ index ];
+ 
+}
+ cout<<endl;
+
+}
